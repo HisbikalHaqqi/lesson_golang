@@ -1,0 +1,70 @@
+command golang:
+go mod init <project>
+go run file.go
+go test main_test.go (harus memilik suffix _test)
+go build -o <nama_program>
+go get "nama_url"
+
+slice = tidak memiliki jumlah elemen
+array = memiliki jumlah elemen
+map = memiliki key dan value
+fmt.Sprintf() pada dasarnya sama dengan fmt.Printf(), hanya saja fungsi ini tidak menampilkan nilai, melainkan mengembalikan nilainya dalam bentuk string. Pada kasus di atas, nilai kembalian fmt.Sprintf()
+closure = sebuah function dalam sebuah variabel
+
+* = pointer
+
+exported = public diawali dengan huruf besar pada struct
+unexported = private diawali dengan huruf kecil
+reflect = pengecekan tipe data (integer, interface, map)
+
+
+goroutine = sama aja kayak thread
+channel = menghubungkan goroutine dengan goroutine lainnya
+buffered channel = sama kayak chanel cuma tambah "make"
+channel select = kontrol channel
+channel range-close 
+channel - timeout
+argument & flag
+exec
+simple client http request
+unit test
+sync wait group
+sync mutex
+go vendoring
+concurency pattern: pipeline
+concurency pattern: simplified fan in fan out pipeline
+concurency pattern: context cancellation
+
+Defer digunakan untuk mengakhirkan eksekusi sebuah statement tepat sebelum blok fungsi selesai.
+Exit digunakan untuk menghentikan program secara paksa (ingat, menghentikan program, tidak seperti return yang hanya menghentikan blok kode).
+error
+panic
+recover
+strconv.Atoi() = string to numeric
+
+
+mysql driver => go get github.com/go-sql-driver/mysql
+
+serve
+http.handleFunc = pengaturan rute 
+http.Error(w, err.Error(), http.StatusInternalServerError)  = custom error
+
+
+basic auth
+Fungsi r.BasicAuth() mengembalikan 3 informasi:
+Username
+Password
+Nilai balik ke-3 ini adalah representasi valid tidak nya basic auth request yang sedang berlangsung
+
+
+running all file go
+go run $(ls *.go)
+
+cookie
+Expires = time.Unix(0, 0) dan MaxAge = -1. Tujuannya agar cookie expired.
+
+Framework
+echo
+
+Validator
+validator v9, echo

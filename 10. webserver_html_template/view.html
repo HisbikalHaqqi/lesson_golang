@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Learning html/template Actions</title>
+</head>
+<body>
+<table>
+    <tr>
+        {{/* example how to use actions */}}
+        <td>{{"Name"}}</td>
+        <td> {{.Name}}</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        {{ $gender := .Gender}}
+        <td>
+            {{ $gender }}
+        </td>
+    </tr>
+    <tr>
+        <td>Hobbies</td>
+        <td>
+        {{ range $index, $elem := .Hobbies }}
+
+            {{ $elem }}
+        {{ end }}
+        </td>
+    </tr>
+    <tr>
+        <td>Affilation</td>
+        <td>: {{.Info.Affilation}} ({{.Info.GetAffiliationDetailInfo}})</td>
+    </tr>
+    {{ if eq .Name "Hisbikal" }}
+        <tr>
+            <td colspan="2" style="font-weight: bold;">
+                I'm the Batman!
+            </td>
+        </tr>
+    {{else if eq .Name "Joni"}}
+        <tr>
+            <td colspan="2" style="font-weight: bold;">
+                I'm the Frozen!
+            </td>
+        </tr>
+    {{else}}
+        <tr>
+            <td colspan="2" style="font-weight: bold;">
+                I'm the Cinderella!
+            </td>
+        </tr>
+    {{end}}
+</table>
+</body>
+</html>

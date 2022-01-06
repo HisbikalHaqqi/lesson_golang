@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Upload</title>
+    <script src="static/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#user-form").on("submit", function (e) {
+                e.preventDefault();
+
+                var $self = $(this);
+                var files = $("#upload-file")[0].files;
+                var formData = new FormData();
+
+                for (var i = 0; i < files.length; i++) {
+                    formData.append("files", files[i]);
+                }
+
+                $.ajax({
+                    url: $self.attr("action"),
+                    type: $self.attr("method"),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                }).then(function (res) {
+                    alert(res);
+                    $("#user-form").trigger("reset");
+                }).catch(function (a) {
+                    alert("ERROR: " + a.responseText);
+                });
+            });
+        });
+
+        function Yo() {
+            var self = this;
+            var $ul = document.getElementById("list-files");
+
+            var renderData = function (res) {
+                res.forEach(function (each) {
+                    var $li = document.createElement("li");
+                    var $a = document.createElement("a");
+
+                    $li.innerText = "download ";
+                    $li.appendChild($a);
+                    $ul.appendChild($li);
+
+                    $a.href = "/download?path=" + encodeURI(each.path);
+                    $a.innerText = each.filename;
+                    $a.target = "_blank";
+                });
+            };
+
+            var getAllListFiles = function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "/list-files");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var json = JSON.parse(xhr.responseText);
+                        renderData(json);
+                    }
+                };
+                xhr.send();
+            };
+
+            self.init = function () {
+                getAllListFiles();
+            };
+        };
+
+        window.onload = function () {
+            new Yo().init();
+        };
+    </script>
+</head>
+<body>
+<form id="user-form" method="post" action="/upload">
+    <h3>Upload File</h3>
+    <input required multiple id="upload-file" type="file" />
+    <br />
+    <button id="btn-upload" type="submit">Upload!</button>
+
+    <h3>List File</h3>
+    <ul id="list-files"></ul>
+</form>
+</body>
+</html>

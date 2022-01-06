@@ -1,0 +1,14 @@
+tiap tahun naek gaji
+berdasarkan persen kpi
+min 7%
+paling besar 16%
+
+cuti yang memotong hak cuti
+cuti yang tidak memotong hak cuti
+
+eligable banyak jenis leave dari cuti tersebut
+lembur (harus ada surat perintah lembur user)
+
+tanya tgl berapa bisa ttd timesheet kapan
+
+lembur dimulai dari
